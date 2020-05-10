@@ -8,7 +8,7 @@ import GithubStarButton from '../../github/StarButton';
 
 import './style.scss';
 
-const availableSizes = ['XS', 'S', 'M', 'ML', 'L', 'XL', 'XXL'];
+const availableSizes = ['XS', 'S', 'M', 'ML', 'L', 'XL', 'XXL','NANO GLASS'];
 
 class Filter extends Component {
   static propTypes = {
@@ -44,9 +44,9 @@ class Filter extends Component {
   render() {
     return (
       <div className="filters">
-        <h4 className="title">Sizes:</h4>
+        <h4 className="title">Types:</h4>
         {this.createCheckboxes()}
-        <GithubStarButton />
+        {/* <GithubStarButton /> */}
       </div>
     );
   }

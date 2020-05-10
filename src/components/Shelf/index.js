@@ -45,7 +45,7 @@ class Shelf extends Component {
     this.setState({ isLoading: true });
     this.props.fetchProducts(filters, sort, () => {
       this.setState({ isLoading: false });
-    });
+    }, this.props.searching);
   };
 
   render() {
@@ -65,6 +65,7 @@ class Shelf extends Component {
 }
 
 const mapStateToProps = state => ({
+  searching: state.searchBy.searching,
   products: state.shelf.products,
   filters: state.filters.items,
   sort: state.sort.type

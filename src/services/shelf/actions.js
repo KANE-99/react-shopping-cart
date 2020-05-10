@@ -16,12 +16,13 @@ const compare = {
   }
 };
 
-export const fetchProducts = (filters, sortBy, callback) => dispatch => {
+export const fetchProducts = (filters, sortBy, callback, searchBy = "") => dispatch => {
   return axios
     .get(productsAPI)
     .then(res => {
       let { products } = res.data;
 
+      
       if (!!filters && filters.length > 0) {
         products = products.filter(p =>
           filters.find(f => p.availableSizes.find(size => size === f))
@@ -31,6 +32,13 @@ export const fetchProducts = (filters, sortBy, callback) => dispatch => {
       if (!!sortBy) {
         products = products.sort(compare[sortBy]);
       }
+
+      if(searchBy) {
+        products = products.filter(p => 
+          p.title.toLowerCase().includes(searchBy)
+        );
+      }
+
 
       if (!!callback) {
         callback();

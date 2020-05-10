@@ -1,15 +1,15 @@
-import { FETCH_PRODUCTS } from './actionTypes';
+import { UPDATE_SEARCH } from './actionTypes';
 
 const initialState = {
-  products: []
+  searching: ""
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case FETCH_PRODUCTS:
+    case UPDATE_SEARCH:
       return {
         ...state,
-        products: action.payload
+        searching: action.payload
       };
     default:
       return state;
