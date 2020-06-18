@@ -20,12 +20,12 @@ export const fetchProducts = (filters, sortBy, callback, searchBy = "") => dispa
   return axios
     .get(productsAPI)
     .then(res => {
-      let { products } = res.data;
-
-      
+      let products = res.data;
+       
+      // console.log(products[0].style)
       if (!!filters && filters.length > 0) {
         products = products.filter(p =>
-          filters.find(f => p.availableSizes.find(size => size === f))
+          filters.find(f => p.style === f)
         );
       }
 
@@ -50,6 +50,7 @@ export const fetchProducts = (filters, sortBy, callback, searchBy = "") => dispa
       });
     })
     .catch(err => {
+      console.log(err)
       console.log('Could not fetch products. Try again later.');
     });
 };

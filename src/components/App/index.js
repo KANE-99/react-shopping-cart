@@ -5,10 +5,13 @@ import Filter from '../Shelf/Filter';
 import GithubCorner from '../github/Corner';
 import FloatCart from '../FloatCart';
 import SearchBar from '../Shelf/SearchBar';
+import Logo from '../Logo'
+
 
 const App = () => (
   <React.Fragment>
-    <GithubCorner />
+    {/* <GithubCorner /> */}
+    <Logo />
     <SearchBar />
     <main>
       <Filter />     

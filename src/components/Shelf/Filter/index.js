@@ -8,7 +8,7 @@ import GithubStarButton from '../../github/StarButton';
 
 import './style.scss';
 
-const availableSizes = ['XS', 'S', 'M', 'ML', 'L', 'XL', 'XXL','NANO GLASS'];
+const availableStyles = ['NANO MATE', 'NANO GLASS'];
 
 class Filter extends Component {
   static propTypes = {
@@ -39,7 +39,7 @@ class Filter extends Component {
     />
   );
 
-  createCheckboxes = () => availableSizes.map(this.createCheckbox);
+  createCheckboxes = () => availableStyles.map(this.createCheckbox);
 
   render() {
     return (

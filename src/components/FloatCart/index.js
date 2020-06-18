@@ -6,6 +6,7 @@ import { loadCart, removeProduct, changeProductQuantity } from '../../services/c
 import { updateCart } from '../../services/total/actions';
 import CartProduct from './CartProduct';
 import { formatPrice } from '../../services/util';
+import { withRouter } from "react-router-dom";
 
 import './style.scss';
 
@@ -52,7 +53,7 @@ class FloatCart extends Component {
     let productAlreadyInCart = false;
 
     cartProducts.forEach(cp => {
-      if (cp.id === product.id) {
+      if (cp._id === product._id) {
         cp.quantity += product.quantity;
         productAlreadyInCart = true;
       }
@@ -69,7 +70,7 @@ class FloatCart extends Component {
   removeProduct = product => {
     const { cartProducts, updateCart } = this.props;
 
-    const index = cartProducts.findIndex(p => p.id === product.id);
+    const index = cartProducts.findIndex(p => p._id === product._id);
     if (index >= 0) {
       cartProducts.splice(index, 1);
       updateCart(cartProducts);
@@ -84,22 +85,24 @@ class FloatCart extends Component {
       currencyId
     } = this.props.cartTotal;
 
-    if (!productQuantity) {
-      alert('Add some product in the cart!');
-    } else {
-      alert(
-        `Checkout - Subtotal: ${currencyFormat} ${formatPrice(
-          totalPrice,
-          currencyId
-        )}`
-      );
-    }
+    // if (!productQuantity) {
+    //   alert('Add some product in the cart!');
+    // } else {
+    //   alert(
+    //     `Checkout - Subtotal: ${currencyFormat} ${formatPrice(
+    //       totalPrice,
+    //       currencyId
+    //     )}`
+    //   );
+    // }
+
+    this.props.history.push('/checkout')
   };
 
   changeProductQuantity = changedProduct => {
     const { cartProducts, updateCart } = this.props;
 
-    const product = cartProducts.find(p => p.id === changedProduct.id);
+    const product = cartProducts.find(p => p._id === changedProduct._id);
     product.quantity = changedProduct.quantity;
     if (product.quantity <= 0) {
       this.removeProduct(product);
@@ -112,7 +115,7 @@ class FloatCart extends Component {
 
     const products = cartProducts.map(p => {
       return (
-        <CartProduct product={p} removeProduct={removeProduct} changeProductQuantity={changeProductQuantity} key={p.id} />
+        <CartProduct product={p} removeProduct={removeProduct} changeProductQuantity={changeProductQuantity} key={p._id} />
       );
     });
 
@@ -185,7 +188,7 @@ class FloatCart extends Component {
               </small>
             </div>
             <div onClick={() => this.proceedToCheckout()} className="buy-btn">
-              Checkout
+              Place Order
             </div>
           </div>
         </div>
@@ -202,7 +205,7 @@ const mapStateToProps = state => ({
   cartTotal: state.total.data
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   { loadCart, updateCart, removeProduct, changeProductQuantity }
-)(FloatCart);
+)(FloatCart));

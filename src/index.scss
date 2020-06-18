@@ -27,6 +27,9 @@ main {
   body {
     .filters {
       width: 20%;
+      border: 5px dashed #ee5727;
+      border-radius: 16px 10px 10px 16px;
+      padding: 10px
     }
 
     .shelf-container {
@@ -43,6 +46,7 @@ main {
   body {
     .filters {
       width: 25%;
+      
     }
 
     .shelf-container {

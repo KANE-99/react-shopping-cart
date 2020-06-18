@@ -20,7 +20,7 @@ const SearchBar = ({ filters, sort, updateSearch, fetchProducts }) => {
     }
 
     return (
-        <div style={{ marginLeft: 100, marginTop: 100 }}>
+        <div style={{ marginLeft: 160, marginTop: 40 }}>
             <form onSubmit={ e => onSubmitHandler(e) }>
             <input value={val} name="search" placeholder="Search Product by name" onChange={e => onChangeHandler(e)} />
             <input type="submit" value="Search" style={{ marginLeft: 20 }} />

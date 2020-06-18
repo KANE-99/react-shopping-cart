@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Thumb from './../../Thumb';
 import { formatPrice } from '../../../services/util';
 
+const baseURL = "http://192.168.43.129:8001/";
+
 class CartProduct extends Component {
   static propTypes = {
     product: PropTypes.object.isRequired,
@@ -61,13 +63,13 @@ class CartProduct extends Component {
         />
         <Thumb
           classes="shelf-item__thumb"
-          src={require(`../../../static/products/${product.sku}_2.jpg`)}
+          src={baseURL+product.productImage}
           alt={product.title}
         />
         <div className="shelf-item__details">
           <p className="title">{product.title}</p>
           <p className="desc">
-            {`${product.availableSizes[0]} | ${product.style}`} <br />
+            {`${product.style}`} <br />
             Quantity: {product.quantity}
           </p>
         </div>
